@@ -3,39 +3,43 @@ version: '3.8'
 services:
   postgres:
     image: postgres:14
-    container_name: ontodb-postgres-${USER}  
-    restart: always
     environment:
       POSTGRES_DB: OntoDb
       POSTGRES_USER: ontodb
       POSTGRES_PASSWORD: admin
     ports:
-      - "5433:5432"  
+      - "5432:5432"
     volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres_data:/var/lib/postgresql/data
-      - ../init:/docker-entrypoint-initdb.d
-      - ../data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ontodb -d OntoDb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
-      - ontodb-network
+      - onto_network
 
-  jupyter:
-    image: jupyter/scipy-notebook:latest
-    container_name: ontodb-jupyter-${USER}
-    ports:
-      - "8888:8888"
-    volumes:
-      - ../notebooks:/home/jovyan/work
-      - ../data:/home/jovyan/data
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
-    networks:
-      - ontodb-network
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ../data:/app/data
+    environment:
+      - DB_HOST=postgres
+      - DB_NAME=OntoDb
+      - DB_USER=ontodb
+      - DB_PASSWORD=admin
+    networks:
+      - onto_network
+
+networks:
+  onto_network:
+    driver: bridge
 
 volumes:
   postgres_data:
-
-networks:
-  ontodb-network:
-    driver: bridge
