@@ -1,0 +1,88 @@
+@prefix : <http://example.org/store#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+:Store rdf:type owl:Class .
+:Product rdf:type owl:Class .
+:Transaction rdf:type owl:Class .
+:Employee rdf:type owl:Class .
+:Shift rdf:type owl:Class .
+:PaymentMethod rdf:type owl:Class .
+:Currency rdf:type owl:Class .
+:Region rdf:type owl:Class .
+:StoreCategory rdf:type owl:Class .
+:ProductCategory rdf:type owl:Class .
+:ProductType rdf:type owl:Class .
+:Role rdf:type owl:Class .
+
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+:hasCategory rdf:type owl:ObjectProperty ;
+             rdfs:domain :Store ;
+             rdfs:range :StoreCategory .
+
+:hasRegion rdf:type owl:ObjectProperty ;
+           rdfs:domain :Store ;
+           rdfs:range :Region .
+
+:sellsProduct rdf:type owl:ObjectProperty ;
+              rdfs:domain :Store ;
+              rdfs:range :Product .
+
+:hasTransaction rdf:type owl:ObjectProperty ;
+                rdfs:domain :Store ;
+                rdfs:range :Transaction .
+
+:madeBy rdf:type owl:ObjectProperty ;
+        rdfs:domain :Transaction ;
+        rdfs:range :Employee .
+
+:includesProduct rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Transaction ;
+                 rdfs:range :Product .
+
+:usesPaymentMethod rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Transaction ;
+                   rdfs:range :PaymentMethod .
+
+:usesCurrency rdf:type owl:ObjectProperty ;
+              rdfs:domain :Transaction ;
+              rdfs:range :Currency .
+
+:hasRole rdf:type owl:ObjectProperty ;
+         rdfs:domain :Employee ;
+         rdfs:range :Role .
+
+
+
+#################################################################
+#    Examples of Instances
+#################################################################
+
+:Store1 rdf:type :Store ;
+        :hasCategory :CoffeeShop ;
+        :hasRegion :Wallonie .
+
+:Product1 rdf:type :Product ;
+          rdfs:label "Ethiopia Rg" ;
+          :hasCategory :Coffee ;
+          :hasType :Gourmet brewed coffee .
+
+:Transaction1 rdf:type :Transaction ;
+              :madeBy :Employee1 ;
+              :includesProduct :Product1 ;
+              :usesPaymentMethod :CreditCard ;
+              :usesCurrency :Euro .
+
+:Employee1 rdf:type :Employee ;
+           :hasRole :Cashier .
