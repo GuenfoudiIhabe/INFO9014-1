@@ -11,13 +11,14 @@
 :Store rdf:type owl:Class .
 :Product rdf:type owl:Class .
 :Transaction rdf:type owl:Class .
+:TransactionItem rdf:type owl:class
 :Staff rdf:type owl:Class .
 :Shift rdf:type owl:Class .
 :PaymentMethod rdf:type owl:Class .
 :Currency rdf:type owl:Class .
 :StoreRegion rdf:type owl:Class .
 :StoreCategory rdf:type owl:Class .
-:ProductCategory rdf:type owl:Class .
+:ProductCategory rdf:type owl:Class ; rdfs:subClassOf :Product .
 :ProductType rdf:type owl:Class .
 :StaffRole rdf:type owl:Class .
 :Supplier rdf:type owl:Class .
@@ -29,9 +30,13 @@
 #    Object Properties
 #################################################################
 
-:hasCategory rdf:type owl:ObjectProperty ;
+:hasStoreCategory rdf:type owl:ObjectProperty ;
              rdfs:domain :Store ;
              rdfs:range :StoreCategory .
+
+:hasProductCategory rdf:type owl:ObjectProperty ;
+             rdfs:domain :Product ;
+             rdfs:range :ProductCategory .
 
 :hasRegion rdf:type owl:ObjectProperty ;
            rdfs:domain :Store ;
