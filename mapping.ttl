@@ -20,6 +20,8 @@
 :ProductCategory rdf:type owl:Class .
 :ProductType rdf:type owl:Class .
 :Role rdf:type owl:Class .
+:Supplier rdf:type owl:Class .
+:ProductSupplier rdf:type owl:Class .
 
 
 
@@ -63,6 +65,13 @@
          rdfs:domain :Employee ;
          rdfs:range :Role .
 
+:hasSupplier rdf:type owl:ObjectProperty ;
+             rdfs:domain :Product ;
+             rdfs:range :Supplier .
+
+:suppliedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :ProductSupplier ;
+            rdfs:range :Supplier .
 
 
 #################################################################

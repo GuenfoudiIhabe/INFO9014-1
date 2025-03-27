@@ -126,6 +126,24 @@ CREATE TABLE IF NOT EXISTS TransactionItem (
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
 
+CREATE TABLE IF NOT EXISTS Supplier (
+    supplier_id SERIAL PRIMARY KEY,
+    supplier_name VARCHAR(100) NOT NULL UNIQUE,
+    contact_name VARCHAR(100),
+    contact_phone VARCHAR(20),
+    address VARCHAR(255),
+    country VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS ProductSupplier (
+    product_id VARCHAR(50) NOT NULL,
+    supplier_id INT NOT NULL,
+    PRIMARY KEY (product_id, supplier_id),
+    FOREIGN KEY (product_id) REFERENCES Product(product_id),
+    FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id)
+);
+
+
 -- Default data
 INSERT INTO Currency (currency_code, currency_name, symbol) 
 VALUES ('EUR', 'Euro', '€'), ('USD', 'US Dollar', '$')
@@ -151,3 +169,20 @@ ON CONFLICT DO NOTHING;
 INSERT INTO StaffRole (role_name, hourly_rate)
 VALUES ('Cashier', 12.50), ('Barista', 14.00), ('Baker', 15.50), ('Manager', 20.00)
 ON CONFLICT (role_name) DO NOTHING;
+
+INSERT INTO Supplier (name, contact_person, phone_number, street_address, country)
+VALUES
+    ('Artisan Bakery Supplies', 'Marie Dupont', '+33123456789', '10 Rue de la Boulangerie, Paris', 'France'),
+    ('Premium Coffee Roasters', 'Jean Martin', '+33456789012', '5 Boulevard de la Caféterie, Lyon', 'France'),
+    ('Gourmet Food Distributors', 'Sophie Laurent', '+33789012345', '20 Avenue des Saveurs, Marseille', 'France')
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO ProductSupplier (product_id, supplier_id)
+VALUES
+    ('B001', 1),  -- Croissant Variety 1 from a bakery product supplied by Artisan Bakery Supplies
+    ('B002', 1),  -- Croissant Variety 2 from a bakery product supplied by Artisan Bakery Supplies
+    ('B004', 1),  -- Pain au Chocolat Variety 1 from a bakery product supplied by Artisan Bakery Supplies
+    ('B007', 3),  -- Eclair Variety 1 from a bakery product supplied by Gourmet Food Distributors
+    ('B010', 3),  -- Danish Variety 1 from a bakery product supplied by Gourmet Food Distributors
+    ('C001', 2)   -- Hypothetical coffee product supplied by Premium Coffee Roasters
+ON CONFLICT DO NOTHING;
