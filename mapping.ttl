@@ -11,15 +11,15 @@
 :Store rdf:type owl:Class .
 :Product rdf:type owl:Class .
 :Transaction rdf:type owl:Class .
-:Employee rdf:type owl:Class .
+:Staff rdf:type owl:Class .
 :Shift rdf:type owl:Class .
 :PaymentMethod rdf:type owl:Class .
 :Currency rdf:type owl:Class .
-:Region rdf:type owl:Class .
+:StoreRegion rdf:type owl:Class .
 :StoreCategory rdf:type owl:Class .
 :ProductCategory rdf:type owl:Class .
 :ProductType rdf:type owl:Class .
-:Role rdf:type owl:Class .
+:StaffRole rdf:type owl:Class .
 :Supplier rdf:type owl:Class .
 :ProductSupplier rdf:type owl:Class .
 
@@ -62,7 +62,7 @@
               rdfs:range :Currency .
 
 :hasRole rdf:type owl:ObjectProperty ;
-         rdfs:domain :Employee ;
+         rdfs:domain :Staff ;
          rdfs:range :Role .
 
 :hasSupplier rdf:type owl:ObjectProperty ;
@@ -88,10 +88,10 @@
           :hasType :Gourmet brewed coffee .
 
 :Transaction1 rdf:type :Transaction ;
-              :madeBy :Employee1 ;
+              :madeBy :Staff1 ;
               :includesProduct :Product1 ;
               :usesPaymentMethod :CreditCard ;
               :usesCurrency :Euro .
 
-:Employee1 rdf:type :Employee ;
+:Staff1 rdf:type :Staff ;
            :hasRole :Cashier .
