@@ -20,7 +20,7 @@
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
                     owl:onProperty :locatedIn ;
-                    owl:minCardinality 1
+                    owl:exactCardinality 1
                 ] .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Product
@@ -29,7 +29,7 @@
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
                     owl:onProperty :hasProductCategory ;
-                    owl:minCardinality 1
+                    owl:exactCardinality 1
                 ] .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Transaction
@@ -40,7 +40,7 @@
 :Staff rdf:type owl:Class
     rdfs:subClassOf [
     rdf:type owl:Restriction ;
-    owl:onProperty ::worksInShift ;
+    owl:onProperty :worksInShift ;
     owl:minCardinality 1
 ] .
 
@@ -84,11 +84,11 @@
 # Store Data Properties
 :store_id rdf:type owl:DatatypeProperty .
                 rdfs:domain :Store ;
-                rdfs:range xsd:Literal .
+                rdfs:range xsd:string .
 
 :store_name rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Store ;
-                        rdfs:range xsd:Literal .
+                        rdfs:range xsd:string .
 
 :store_category rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Store ;
@@ -100,16 +100,111 @@
 
 :address rdf:type owl:DatatypeProperty ;
                            rdfs:domain :Store ;
-                           rdfs:range xsd:Literal .
+                           rdfs:range xsd:string .
 
 :phone rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Store ;
-                        rdfs:range xsd:Literal .
+                        rdfs:range xsd:string .
 
 :opening_date rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Store ;
-                        xsd:range xsd:Literal .
+                        xsd:range xsd:date .
 
+
+# StoreCategory Data Properties
+:category_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :StoreCategory ;
+                        rdfs:range xsd:string .
+
+:category_name rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :StoreCategory ;
+                        rdfs:range xsd:string .
+
+:description rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :StoreCategory ;
+                        rdfs:range xsd:string .
+
+
+# Region Data Properties
+:region_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Region ;
+                        rdfs:range xsd:string .
+
+:region_name rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Region ;
+                        rdfs:range xsd:string .
+
+:country rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Region ;
+                        rdfs:range xsd:string .
+
+
+## Product Data Properties
+:product_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range xsd:string .
+                
+:product_name rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range xsd:string .
+
+:type_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :ProductT ;
+                        rdfs:range :ProductType .
+
+:details rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range xsd:string .
+
+:base_price rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range xsd:float .
+
+:currency_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range :Currency .
+
+is_seasonal rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range xsd:boolean .
+
+is_active rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Product ;
+                        rdfs:range xsd:boolean .
+
+
+## Transaction Data Properties
+:transaction_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range xsd:string .
+
+:store_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range :Store .
+
+:transaction_date rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range xsd:date .
+
+:transaction_time rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range xsd:time .
+
+:Payment_method_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range :PaymentMethod .
+
+staff_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range :Staff .
+
+total_amount rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range xsd:float .
+
+currency_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Transaction ;
+                        rdfs:range :Currency .
 #################################################################
 #    Object Properties
 #################################################################
