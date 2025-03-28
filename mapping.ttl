@@ -77,6 +77,39 @@
 :StaffRole rdf:type owl:Class
            rdfs:subClassOf :Staff .
 
+
+#################################################################
+#    Data Properties
+#################################################################
+# Store Data Properties
+:store_id rdf:type owl:DatatypeProperty .
+                rdfs:domain :Store ;
+                rdfs:range xsd:Literal .
+
+:store_name rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Store ;
+                        rdfs:range xsd:Literal .
+
+:store_category rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Store ;
+                        rdfs:range :StoreCategory .
+
+:region_id rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Store ;
+                        rdfs:range :Region .
+
+:address rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :Store ;
+                           rdfs:range xsd:Literal .
+
+:phone rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Store ;
+                        rdfs:range xsd:Literal .
+
+:opening_date rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Store ;
+                        xsd:range xsd:Literal .
+
 #################################################################
 #    Object Properties
 #################################################################
