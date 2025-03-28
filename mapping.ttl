@@ -1,81 +1,86 @@
-@prefix : <http://example.org/store#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@base <http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/> .
 
+<http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions> rdf:type owl:Ontology ;
 
 #################################################################
 #    Classes
 #################################################################
 
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Store
-:Store rdf:type owl:Class ;
-                rdfs:subClassOf [
-                    rdf:type owl:Restriction ;
-                    owl:onProperty :hasStoreCategory 
-                ] .
-                rdfs:subClassOf [
-                    rdf:type owl:Restriction ;
-                    owl:onProperty :locatedIn ;
-                ] .
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Product
-:Product rdf:type owl:Class ;
-                rdfs:subClassOf [
-                    rdf:type owl:Restriction ;
-                    owl:onProperty :hasProductCategory ;
-                ] .
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Transaction
-:Transaction rdf:type owl:Class .
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Staff
-:Staff rdf:type owl:Class ;
-    rdfs:subClassOf [
-    rdf:type owl:Restriction ;
-    owl:onProperty :worksInShift ;
-] .
-
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Shift
-:Shift rdf:type owl:class ;
-    rdfs:subClassOf [
-    rdf:type owl:Restriction ;
-    owl:onProperty :assignedTo ;
-] .
-
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/PaymentMethod
-:PaymentMethod rdf:type owl:Class .
-
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Currency
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Currency
 :Currency rdf:type owl:Class .
 
 
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreRegion
-:Region rdf:type owl:Class ;
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/PaymentMethod
+:PaymentMethod rdf:type owl:Class .
 
 
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreCategory
-:StoreCategory rdf:type owl:Class 
-               rdfs:subClassOf :Store .
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Product
+:Product rdf:type owl:Class .
 
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductCategory
-:ProductType rdf:type owl:Class
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductCategory
+:ProductCategory rdf:type owl:Class ;
+                 rdfs:subClassOf :Product .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductSupplier
+:ProductSupplier rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductType
+:ProductType rdf:type owl:Class ;
              rdfs:subClassOf :ProductCategory .
 
-### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StaffRole             
-:StaffRole rdf:type owl:Class
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Shift
+:Shift rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Staff
+:Staff rdf:type owl:Class .
+       
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StaffRole
+:StaffRole rdf:type owl:Class ;
            rdfs:subClassOf :Staff .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Store
+:Store rdf:type owl:Class .
+      
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreCategory
+:StoreCategory rdf:type owl:Class ;
+               rdfs:subClassOf :Store .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreRegion
+:StoreRegion rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Supplier
+:Supplier rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Transaction
+:Transaction rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/TransactionItem
+:TransactionItem rdf:type owl:Class .
 
 
 #################################################################
 #    Data Properties
 #################################################################
-# Store Data Properties
+### Store Data Properties
 :store_id rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Store ;
                 rdfs:range xsd:string .
@@ -105,7 +110,7 @@
                         xsd:range xsd:date .
 
 
-# StoreCategory Data Properties
+### StoreCategory Data Properties
 :category_id rdf:type owl:DatatypeProperty ;
                         rdfs:domain :StoreCategory ;
                         rdfs:range xsd:string .
@@ -119,7 +124,7 @@
                         rdfs:range xsd:string .
 
 
-# Region Data Properties
+### Region Data Properties
 :region_id rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Region ;
                         rdfs:range xsd:string .
@@ -133,7 +138,7 @@
                         rdfs:range xsd:string .
 
 
-## Product Data Properties
+### Product Data Properties
 :product_id rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Product ;
                         rdfs:range xsd:string .
@@ -167,7 +172,7 @@ is_active rdf:type owl:DatatypeProperty ;
                         rdfs:range xsd:boolean .
 
 
-## Transaction Data Properties
+### Transaction Data Properties
 :transaction_id rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Transaction ;
                         rdfs:range xsd:string .
@@ -199,104 +204,134 @@ total_amount rdf:type owl:DatatypeProperty ;
 currency_id rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Transaction ;
                         rdfs:range :Currency .
+
 #################################################################
 #    Object Properties
 #################################################################
 
-:hasStoreCategory rdf:type owl:ObjectProperty ;
-             rdfs:domain :Store ;
-             rdfs:range :StoreCategory .
-
-:hasProductCategory rdf:type owl:ObjectProperty ;
-             rdfs:domain :Product ;
-             rdfs:range :ProductCategory .
-
-:hasProductType rdf:type owl:ObjectProperty ;
-             rdfs:domain :Product ;
-             rdfs:range :ProductType .
-
-:isTypeOfProduct rdf:type owl:ObjectProperty ;
-             rdfs:domain :ProductType ;
-             rdfs:range : Product 
-             owl:inverseOf :hasProductType .
-
-:employsStaff rdf:type owl:ObjectProperty ;
-              rdfs:domain :Store ;
-              rdfs:range :Staff .
-
-:isEmployedBy rdf:type owl:ObjectProperty ;
-              rdfs:domain :Staff ;
-              rdfs:range :Store 
-              owl:inverseOf :employsStaff .
-
-:worksInShift rdf:type owl:ObjectProperty ;
-              rdfs:domain :Staff ;
-              rdfs:range :Shift .
-
-:hasStaffMember rdf:type owl:ObjectProperty ;
-              rdfs:domain :Shift ;
-              rdfs:range :Staff ;
-              owl:inverseOf :worksInShift .
-
-:handlesTransaction rdf:type owl:ObjectProperty ;
-              rdfs:domain :Staff ;
-              rdfs:range :Transaction .
-
-:handledBy rdf:type owl:ObjectProperty ;
-              rdfs:domain :Transaction ;
-              rdfs:range :Staff ;
-              owl:inverseOf :handlesTransaction .
-
-:processes rdf:type owl:ObjectProperty ;
-                rdfs:domain :Store ;
-                rdfs:range :Transaction .
-
-:occursAt rdf:type owl:ObjectProperty ;
-                rdfs:domain :Transaction ;
-                rdfs:range :Store 
-                owl:inverseOf :processes .
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions#isCurrencyOfTransaction
+:isCurrencyOfTransaction rdf:type owl:ObjectProperty ;
+                         owl:inverseOf :usesCurrency ;
+                         rdfs:domain :Currency ;
+                         rdfs:range :Transaction .
 
 
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions#isUsedInTransaction
+:isUsedInTransaction rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :usesPaymentMethod ;
+                     rdfs:domain :PaymentMethod ;
+                     rdfs:range :Transaction .
 
-:locatedIn rdf:type owl:ObjectProperty ;
-           rdfs:domain :Store ;
-           rdfs:range :Region .
 
-:sellsProduct rdf:type owl:ObjectProperty ;
-              rdfs:domain :Store ;
-              rdfs:range :Product .
-
-:hasTransaction rdf:type owl:ObjectProperty ;
-                rdfs:domain :Store ;
-                rdfs:range :Transaction .
-
-:madeBy rdf:type owl:ObjectProperty ;
-        rdfs:domain :Transaction ;
-        rdfs:range :Employee .
-
-:includesProduct rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Transaction ;
-                 rdfs:range :Product .
-
-:usesPaymentMethod rdf:type owl:ObjectProperty ;
-                   rdfs:domain :Transaction ;
-                   rdfs:range :PaymentMethod .
-
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions#usesCurrency
 :usesCurrency rdf:type owl:ObjectProperty ;
               rdfs:domain :Transaction ;
               rdfs:range :Currency .
 
-:hasRole rdf:type owl:ObjectProperty ;
-         rdfs:domain :Staff ;
-         rdfs:range :Role .
 
-:hasSupplier rdf:type owl:ObjectProperty ;
-             rdfs:domain :Product ;
-             rdfs:range :Supplier .
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions#usesPaymentMethod
+:usesPaymentMethod rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Transaction ;
+                   rdfs:range :PaymentMethod .
 
-:suppliedBy rdf:type owl:ObjectProperty ;
-            rdfs:domain :ProductSupplier ;
-            rdfs:range :Supplier .
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/employsStaff
+:employsStaff rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isEmployedBy ;
+              rdfs:domain :Store ;
+              rdfs:range :Staff .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/handledBy
+:handledBy rdf:type owl:ObjectProperty ;
+           owl:inverseOf :handlesTransaction ;
+           rdfs:domain :Transaction ;
+           rdfs:range :Staff .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/handlesTransaction
+:handlesTransaction rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Staff ;
+                    rdfs:range :Transaction .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/hasProductCategory
+:hasProductCategory rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isCategoryOfProductType ;
+                    rdfs:domain :ProductType ;
+                    rdfs:range :ProductCategory .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/hasProductType
+:hasProductType rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isTypeOfProduct ;
+                rdfs:domain :Product ;
+                rdfs:range :ProductType .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/hasStaffMember
+:hasStaffMember rdf:type owl:ObjectProperty ;
+                owl:inverseOf :worksInShift ;
+                rdfs:domain :Shift ;
+                rdfs:range :Staff .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/hasStoreCategory
+:hasStoreCategory rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isCategoryOfStore ;
+                  rdfs:domain :Store ;
+                  rdfs:range :StoreCategory ;
+                  rdfs:comment "A store has a category"@en .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/isCategoryOfProductType
+:isCategoryOfProductType rdf:type owl:ObjectProperty ;
+                         rdfs:domain :ProductCategory ;
+                         rdfs:range :ProductType .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/isCategoryOfStore
+:isCategoryOfStore rdf:type owl:ObjectProperty ;
+                   rdfs:domain :StoreCategory ;
+                   rdfs:range :Store .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/isEmployedBy
+:isEmployedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Staff ;
+              rdfs:range :Store .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/isTypeOfProduct
+:isTypeOfProduct rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ProductType ;
+                 rdfs:range :Product .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/locatedIn
+:locatedIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Store ;
+           rdfs:range :StoreRegion ;
+           rdfs:comment "A store is located in a certain region"@en .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/occursAt
+:occursAt rdf:type owl:ObjectProperty ;
+          owl:inverseOf :processes ;
+          rdfs:domain :Transaction ;
+          rdfs:range :Store .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/processes
+:processes rdf:type owl:ObjectProperty ;
+           rdfs:domain :Store ;
+           rdfs:range :Transaction .
+
+
+###  http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/worksInShift
+:worksInShift rdf:type owl:ObjectProperty ;
+              rdfs:domain :Staff ;
+              rdfs:range :Shift .
 
 
 #################################################################
@@ -320,3 +355,23 @@ currency_id rdf:type owl:DatatypeProperty ;
 
 :Staff1 rdf:type :Staff ;
            :hasRole :Cashier .
+
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:subClassOf [ rdf:type owl:Class ;
+                            owl:unionOf ( :Currency
+                                          :PaymentMethod
+                                          :Product
+                                          :ProductSupplier
+                                          :Shift
+                                          :Staff
+                                          :Store
+                                          :StoreRegion
+                                          :Supplier
+                                          :Transaction
+                                          :TransactionItem
+                                        )
+                          ] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
