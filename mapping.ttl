@@ -13,7 +13,6 @@
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Store
 :Store rdf:type owl:Class ;
-                owl:hasKey (:store_id) ;
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
                     owl:onProperty :hasStoreCategory ;
@@ -26,8 +25,7 @@
                 ] .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Product
-:Product rdf:type owl:Class .
-                owl:hasKey (:product_id) ;
+:Product rdf:type owl:Class ;
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
                     owl:onProperty :hasProductCategory ;
@@ -35,12 +33,10 @@
                 ] .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Transaction
-:Transaction rdf:type owl:Class
-                        owl:hasKey (:transaction_id) .
+:Transaction rdf:type owl:Class .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Staff
-:Staff rdf:type owl:Class
-    owl:hasKey (:staff_id) ;
+:Staff rdf:type owl:Class ;
     rdfs:subClassOf [
     rdf:type owl:Restriction ;
     owl:onProperty :worksInShift ;
@@ -49,8 +45,7 @@
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Shift
-:Shift rdf:type owl:class
-    owl:hasKey (:shift_id) ;
+:Shift rdf:type owl:class ;
     rdfs:subClassOf [
     rdf:type owl:Restriction ;
     owl:onProperty :assignedTo ;
@@ -59,34 +54,27 @@
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/PaymentMethod
-:PaymentMethod rdf:type owl:Class 
-               owl:hasKey (:payment_method_id) .
-
+:PaymentMethod rdf:type owl:Class .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Currency
-:Currency rdf:type owl:Class 
-                   owl:hasKey (:currency_id) .
+:Currency rdf:type owl:Class .
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreRegion
-:Region rdf:type owl:Class 
-                 owl:hasKey (:region_id) .
+:Region rdf:type owl:Class ;
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreCategory
 :StoreCategory rdf:type owl:Class 
-               rdfs:subClassOf :Store ;
-               owl:hasKey (:category_id) .
+               rdfs:subClassOf :Store .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductCategory
 :ProductType rdf:type owl:Class
-             rdfs:subClassOf :ProductCategory ;
-             owl:hasKey (:type_id) .
+             rdfs:subClassOf :ProductCategory .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StaffRole             
 :StaffRole rdf:type owl:Class
-           rdfs:subClassOf :Staff ;
-           owl:hasKey (:role_id) .
+           rdfs:subClassOf :Staff .
 
 
 #################################################################
