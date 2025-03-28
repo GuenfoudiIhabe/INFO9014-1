@@ -8,23 +8,74 @@
 #    Classes
 #################################################################
 
-:Store rdf:type owl:Class .
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Store
+:Store rdf:type owl:Class ;
+                owl:hasKey (:store_id) ;
+                rdfs:subClassOf [
+                    rdf:type owl:Restriction ;
+                    owl:onProperty :hasStoreCategory ;
+                    owl:minCardinality 1
+                ] .
+                rdfs:subClassOf [
+                    rdf:type owl:Restriction ;
+                    owl:onProperty :locatedIn ;
+                    owl:minCardinality 1
+                ] .
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Product
 :Product rdf:type owl:Class .
-:Transaction rdf:type owl:Class .
-:TransactionItem rdf:type owl:class
-:Staff rdf:type owl:Class .
-:Shift rdf:type owl:Class .
+                owl:hasKey (:product_id) ;
+                rdfs:subClassOf [
+                    rdf:type owl:Restriction ;
+                    owl:onProperty :hasProductCategory ;
+                    owl:minCardinality 1
+                ] .
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Transaction
+:Transaction rdf:type owl:Class
+                        owl:hasKey (:transaction_id) .
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Staff
+:Staff rdf:type owl:Class
+    rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty ::worksInShift ;
+    owl:minCardinality 1
+] .
+
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Shift
+:Shift rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :assignedTo ;
+    owl:minCardinality 1
+] .
+
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/PaymentMethod
 :PaymentMethod rdf:type owl:Class .
+
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Currency
 :Currency rdf:type owl:Class .
-:StoreRegion rdf:type owl:Class .
-:StoreCategory rdf:type owl:Class .
-:ProductCategory rdf:type owl:Class ; rdfs:subClassOf :Product .
-:ProductType rdf:type owl:Class .
-:StaffRole rdf:type owl:Class .
-:Supplier rdf:type owl:Class .
-:ProductSupplier rdf:type owl:Class .
 
 
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreRegion
+:Region rdf:type owl:Class .
+
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreCategory
+:StoreCategory rdf:type owl:Class 
+               rdfs:subClassOf Store .
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductCategory
+:ProductType rdf:type owl:Class
+             rdfs:subClassOf :Product .
+
+### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StaffRole             
+:StaffRole rdf:type owl:Class
+           rdfs:subClassOf :Staff .
 
 #################################################################
 #    Object Properties
@@ -38,7 +89,54 @@
              rdfs:domain :Product ;
              rdfs:range :ProductCategory .
 
-:hasRegion rdf:type owl:ObjectProperty ;
+:hasProductType rdf:type owl:ObjectProperty ;
+             rdfs:domain :Product ;
+             rdfs:range :ProductType .
+
+:isTypeOfProduct rdf:type owl:ObjectProperty ;
+             rdfs:domain :ProductType ;
+             rdfs:range : Product 
+             owl:inverseOf :hasProductType .
+
+:employsStaff rdf:type owl:ObjectProperty ;
+              rdfs:domain :Store ;
+              rdfs:range :Staff .
+
+:isEmployedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Staff ;
+              rdfs:range :Store 
+              owl:inverseOf :employsStaff .
+
+:worksInShift rdf:type owl:ObjectProperty ;
+              rdfs:domain :Staff ;
+              rdfs:range :Shift .
+
+:hasStaffMember rdf:type owl:ObjectProperty ;
+              rdfs:domain :Shift ;
+              rdfs:range :Staff ;
+              owl:inverseOf :worksInShift .
+
+:handlesTransaction rdf:type owl:ObjectProperty ;
+              rdfs:domain :Staff ;
+              rdfs:range :Transaction .
+
+:handledBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Transaction ;
+              rdfs:range :Staff ;
+              owl:inverseOf :handlesTransaction .
+
+:processes rdf:type owl:ObjectProperty ;
+                rdfs:domain :Store ;
+                rdfs:range :Transaction .
+
+:occursAt rdf:type owl:ObjectProperty ;
+                rdfs:domain :Transaction ;
+                rdfs:range :Store 
+                owl:inverseOf :processes .
+
+
+
+:locatedIn rdf:type owl:ObjectProperty ;
            rdfs:domain :Store ;
            rdfs:range :Region .
 
