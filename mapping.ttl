@@ -40,6 +40,7 @@
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Staff
 :Staff rdf:type owl:Class
+    owl:hasKey (:staff_id) ;
     rdfs:subClassOf [
     rdf:type owl:Restriction ;
     owl:onProperty :worksInShift ;
@@ -48,7 +49,9 @@
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Shift
-:Shift rdfs:subClassOf [
+:Shift rdf:type owl:class
+    owl:hasKey (:shift_id) ;
+    rdfs:subClassOf [
     rdf:type owl:Restriction ;
     owl:onProperty :assignedTo ;
     owl:minCardinality 1
@@ -56,35 +59,41 @@
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/PaymentMethod
-:PaymentMethod rdf:type owl:Class .
+:PaymentMethod rdf:type owl:Class 
+               owl:hasKey (:payment_method_id) .
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Currency
-:Currency rdf:type owl:Class .
+:Currency rdf:type owl:Class 
+                   owl:hasKey (:currency_id) .
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreRegion
-:Region rdf:type owl:Class .
+:Region rdf:type owl:Class 
+                 owl:hasKey (:region_id) .
 
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StoreCategory
 :StoreCategory rdf:type owl:Class 
-               rdfs:subClassOf Store .
+               rdfs:subClassOf :Store ;
+               owl:hasKey (:category_id) .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/ProductCategory
 :ProductType rdf:type owl:Class
-             rdfs:subClassOf :Product .
+             rdfs:subClassOf :Product ;
+             owl:hasKey (:type_id) .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/StaffRole             
 :StaffRole rdf:type owl:Class
-           rdfs:subClassOf :Staff .
+           rdfs:subClassOf :Staff ;
+           owl:hasKey (:role_id) .
 
 
 #################################################################
 #    Data Properties
 #################################################################
 # Store Data Properties
-:store_id rdf:type owl:DatatypeProperty .
+:store_id rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Store ;
                 rdfs:range xsd:string .
 
