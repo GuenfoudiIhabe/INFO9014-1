@@ -15,13 +15,11 @@
 :Store rdf:type owl:Class ;
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
-                    owl:onProperty :hasStoreCategory ;
-                    owl:minCardinality 1
+                    owl:onProperty :hasStoreCategory 
                 ] .
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
                     owl:onProperty :locatedIn ;
-                    owl:exactCardinality 1
                 ] .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Product
@@ -29,7 +27,6 @@
                 rdfs:subClassOf [
                     rdf:type owl:Restriction ;
                     owl:onProperty :hasProductCategory ;
-                    owl:exactCardinality 1
                 ] .
 
 ### http://www.semanticweb.org/zainab/ontologies/2025/2/retail-transactions/Transaction
@@ -40,7 +37,6 @@
     rdfs:subClassOf [
     rdf:type owl:Restriction ;
     owl:onProperty :worksInShift ;
-    owl:minCardinality 1
 ] .
 
 
@@ -49,7 +45,6 @@
     rdfs:subClassOf [
     rdf:type owl:Restriction ;
     owl:onProperty :assignedTo ;
-    owl:minCardinality 1
 ] .
 
 
